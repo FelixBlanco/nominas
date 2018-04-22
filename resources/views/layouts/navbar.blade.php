@@ -14,6 +14,7 @@
 			@else
 				
 				<a href="{{route('empleados.index')}}" class="nav-item nav-link">Empleados</a>
+				<a href="{{route('producto-precio')}}" class="nav-item nav-link">Producto & Precio</a>
 				<a href="#" class="nav-item nav-link">{{ Auth::user()->name }}</a>
 				<a class="nav-item nav-link" href="{{ route('logout') }}"
 				   onclick="event.preventDefault();

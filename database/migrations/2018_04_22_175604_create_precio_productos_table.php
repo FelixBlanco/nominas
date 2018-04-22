@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmpleadosTable extends Migration
+class CreatePrecioProductosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateEmpleadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('empleados', function (Blueprint $table) {
+        Schema::create('precio_productos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('full_nombre');
-            $table->string('direccion');
-            $table->string('nro_aco');
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->string('monto');
+            $table->string('observacion_precio');
+            $table->integer('tipo_productos_id')->unsigned();
+            $table->foreign('tipo_productos_id')->references('id')->on('tipo_productos');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +30,6 @@ class CreateEmpleadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empleados');
+        Schema::dropIfExists('precio_productos');
     }
 }
