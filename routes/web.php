@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Empleados
+Route::resource('empleados','EmpleadosController');
+Route::get('getempleados','EmpleadosController@getEmpleados')->name('getempleados');
+Route::get('delete-empleado/{id}','EmpleadosController@destroy')->name('delete-empleado/{id}');

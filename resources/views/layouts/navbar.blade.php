@@ -13,7 +13,7 @@
 				<li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
 			@else
 				
-				<a href="#" class="nav-item nav-link">Empleados</a>
+				<a href="{{route('empleados.index')}}" class="nav-item nav-link">Empleados</a>
 				<a href="#" class="nav-item nav-link">{{ Auth::user()->name }}</a>
 				<a class="nav-item nav-link" href="{{ route('logout') }}"
 				   onclick="event.preventDefault();
