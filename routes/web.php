@@ -33,3 +33,8 @@ Route::post('store-tipo-producto','ProductoPrecioController@storeProducto')->nam
 // --- Precio
 Route::get('get-precios','ProductoPrecioController@getPrecios')->name('get-precios');
 Route::post('store-precio','ProductoPrecioController@storePrecio')->name('store-precio');
+
+// Bancos Empleados
+Route::get('bancos','BancosController@index')->name('bancos');
+Route::get('get-bancos','BancosController@get')->name('get-bancos');
+Route::post('add-banco','BancosController@store')->name('add-banco');

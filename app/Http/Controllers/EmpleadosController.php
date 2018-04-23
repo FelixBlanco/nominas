@@ -44,7 +44,7 @@ class EmpleadosController extends Controller
     public function store(Request $request)
     {
         $s = new Empleado($request->all());
-        $s->empresa = Auth::id();
+        $s->users_id = Auth::id();
         $s->save();
         return $s;
     }
