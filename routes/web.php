@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Empleados
 Route::resource('empleados','EmpleadosController');
+Route::get('info-empleado/{EmpleadoId}','EmpleadosController@infoEmpleado')->name('info-empleado/{EmpleadoId}');
 Route::get('getempleados','EmpleadosController@getEmpleados')->name('getempleados');
 Route::get('delete-empleado/{id}','EmpleadosController@destroy')->name('delete-empleado/{id}');
 
@@ -38,3 +39,17 @@ Route::post('store-precio','ProductoPrecioController@storePrecio')->name('store-
 Route::get('bancos','BancosController@index')->name('bancos');
 Route::get('get-bancos','BancosController@get')->name('get-bancos');
 Route::post('add-banco','BancosController@store')->name('add-banco');
+
+// Cuentas
+Route::get('cuenta','DeudasAbonosController@index')->name('cuenta');
+Route::get('totales/{id}','DeudasAbonosController@totales')->name('totales/{id}');
+
+// Deuda
+Route::post('add-deuda','DeudasAbonosController@addDeudas')->name('add-deuda'); 
+Route::get('get-deudas/{idEmpleado}','DeudasAbonosController@getDeudas')->name('get-deudas/{idEmpleado}');
+Route::get('delete-deudas/{id}','DeudasAbonosController@destroyDeudas')->name('delete-deudas/{id}');
+
+// Abonos
+Route::post('add-abono','DeudasAbonosController@addAbonos')->name('add-abono'); 
+Route::get('get-abono/{idEmpleado}','DeudasAbonosController@getAbonos')->name('get-abono/{idEmpleado}');
+Route::get('delete-abonos/{id}','DeudasAbonosController@destroyAbonos')->name('delete-abonos/{id}');

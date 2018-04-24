@@ -25,6 +25,11 @@ class EmpleadosController extends Controller
         return $e;
     }
 
+    public function infoEmpleado($EmpleadoId){
+        $e = Empleado::find($EmpleadoId);
+        return $e;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
