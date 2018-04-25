@@ -29,6 +29,7 @@ Route::get('delete-empleado/{id}','EmpleadosController@destroy')->name('delete-e
 // --- Producto
 Route::get('producto-precio','ProductoPrecioController@index')->name('producto-precio');
 Route::get('get-productos','ProductoPrecioController@getProductos')->name('get-productos');
+Route::get('info-productos/{id}','ProductoPrecioController@infoProductos')->name('info-productos/{id}');
 Route::post('store-tipo-producto','ProductoPrecioController@storeProducto')->name('store-tipo-producto');
 
 // --- Precio
@@ -53,3 +54,9 @@ Route::get('delete-deudas/{id}','DeudasAbonosController@destroyDeudas')->name('d
 Route::post('add-abono','DeudasAbonosController@addAbonos')->name('add-abono'); 
 Route::get('get-abono/{idEmpleado}','DeudasAbonosController@getAbonos')->name('get-abono/{idEmpleado}');
 Route::get('delete-abonos/{id}','DeudasAbonosController@destroyAbonos')->name('delete-abonos/{id}');
+
+// Cargar productos
+Route::get('cargar','CargaProductoController@index')->name('cargar');
+Route::get('get-productos/{id}','CargaProductoController@getProductos')->name('get-productos/{id}');
+Route::post('add-carga','CargaProductoController@addProductos')->name('add-carga');
+Route::get('deleteCarga/{id}','CargaProductoController@deleteCarga')->name('deleteCarga/{id}');

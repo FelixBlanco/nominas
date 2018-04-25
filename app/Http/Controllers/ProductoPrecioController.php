@@ -13,6 +13,11 @@ class ProductoPrecioController extends Controller
     	return view('productos-precios.index');
     }
 
+    public function infoProductos($id){
+        $i = TipoProducto::find($id);
+        return $i;
+    }
+
     public function getProductos(){
     	$p = TipoProducto::orderby('id','desc')->get();
     	return $p;

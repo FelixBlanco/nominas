@@ -22,4 +22,8 @@ class TipoProducto extends Model
 		return $this->hasMany('App\PrecioProducto','id');
 	}
    
+	public function cargaProductos(){
+		return $this->hasMany('App\CargaProducto','id');
+	}
+
 }
