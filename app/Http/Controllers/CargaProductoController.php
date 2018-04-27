@@ -12,8 +12,8 @@ class CargaProductoController extends Controller
     	return view('carga-producto.index');
     }
 
-    public function getProductos($id){
-    	$p = CargaProducto::where('empleados_id',$id)->get();
+    public function getProductos($id,$producto){
+    	$p = CargaProducto::where([['empleados_id',$id],['tipo_productos_id',$producto]])->get();
     	$p->each(function($p){
     		$p->nameProducto = $p->tipoProducto->nombre;
     	});
@@ -33,4 +33,15 @@ class CargaProductoController extends Controller
     	return $d;
     }
 
+    public function totalSacos($empleado,$tipoProducto){
+        $totales = CargaProducto::where([
+            ['empleados_id',$empleado],['tipo_productos_id',$tipoProducto]
+        ])->sum('nro_sacos');
+        return $totales;
+    }
+
+    public function getCargas($empleado){
+        $c = CargaProducto::where('empleados_id',$empleado)->get();
+        return $c;
+    }
 }

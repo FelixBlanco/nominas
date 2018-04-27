@@ -57,6 +57,12 @@ Route::get('delete-abonos/{id}','DeudasAbonosController@destroyAbonos')->name('d
 
 // Cargar productos
 Route::get('cargar','CargaProductoController@index')->name('cargar');
-Route::get('get-productos/{id}','CargaProductoController@getProductos')->name('get-productos/{id}');
+Route::get('total-sacos/{empleadoId}/{tipoProducto}','CargaProductoController@totalSacos')->name('total-sacos/{empleadoId}/{tipoProducto}');
+Route::get('get-carga/{empleado}','CargaProductoController@getCargas')->name('get-carga/{empleado}');
+Route::get('get-productos/{id}/{producto}','CargaProductoController@getProductos')->name('get-productos/{id}/{producto}');
 Route::post('add-carga','CargaProductoController@addProductos')->name('add-carga');
 Route::get('deleteCarga/{id}','CargaProductoController@deleteCarga')->name('deleteCarga/{id}');
+
+// Pagos 
+Route::get('pagar','PagoController@index')->name('pagar');
+Route::get('get-pagos','PagoController@pagos')->name('get-pagos');

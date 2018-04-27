@@ -6,7 +6,7 @@ new Vue({
 	},
 	data:{
 		empleados_id:null, tipo_productos_id:null, nro_sacos:null, day: null, 
-		listEmpleados: [], listProductos: [], listCargas: [], infoEmpleado: [], infoProducto: []
+		listEmpleados: [], listProductos: [], listCargas: [], infoEmpleado: [], infoProducto: [], tolSacos:[]
 	},
 	methods:{
 		getEmpleados:function(){
@@ -24,7 +24,6 @@ new Vue({
 		// Vamos a llamar todos los registros de esa semana
 		// para no volver a escribirlos
 		getCargas:function(){
-			
 			axios.get('info-productos/'+this.tipo_productos_id).then(respon => {
 				this.infoProducto = respon.data;
 			});
@@ -33,9 +32,10 @@ new Vue({
 				this.infoEmpleado = respo.data
 			});
 
-			axios('get-productos/'+this.empleados_id).then(resp => {
+			axios('get-productos/'+this.empleados_id+'/'+this.tipo_productos_id).then(resp => {
 				this.listCargas = resp.data;
 			});
+			this.totalSacos();
 		},
 
 		addCarga:function(){
@@ -43,6 +43,7 @@ new Vue({
 				empleados_id : this.empleados_id, tipo_productos_id : this.tipo_productos_id, nro_sacos: this.nro_sacos, day:this.day,
 			}).then(resp => {
 				this.getCargas();
+				this.totalSacos();
 				console.log('Listo');
 			});
 		},
@@ -50,7 +51,13 @@ new Vue({
 		deleteCarga:function(id){
 			axios.get('deleteCarga/'+id).then(resp => {
 				this.getCargas();
+				this.totalSacos();
 				console.log('Eliminado');
+			})
+		},
+		totalSacos:function(){
+			axios.get('total-sacos/'+this.empleados_id+'/'+this.tipo_productos_id).then(resp => {
+				this.tolSacos = resp.data;
 			})
 		}
 	}

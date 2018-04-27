@@ -68,6 +68,9 @@
                     </td>
                 </tr>
             </table>
+            <p>
+                Total: @{{tolSacos}}
+            </p>
         </div>
     </div>
 </div>
