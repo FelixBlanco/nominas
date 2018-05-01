@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCargaProductosTable extends Migration
+class CreatePagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreateCargaProductosTable extends Migration
      */
     public function up()
     {
-        Schema::create('carga_productos', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nro_sacos');
-            $table->string('day');
-            $table->string('estado_pago')->default('pendiente');
-            $table->string('fecha_pago')->default('00-00-0000');
-            $table->string('pagos_id')->default(null);
+            $table->string('sub_total');
+            $table->string('total_neto');
+            $table->string('efectivo');
             $table->integer('empleados_id')->unsigned();
             $table->foreign('empleados_id')->references('id')->on('empleados');
-            $table->integer('tipo_productos_id')->unsigned();
-            $table->foreign('tipo_productos_id')->references('id')->on('tipo_productos');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +32,6 @@ class CreateCargaProductosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carga_productos');
+        Schema::dropIfExists('pagos');
     }
 }

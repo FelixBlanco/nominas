@@ -16,7 +16,7 @@ class DeudasAbonosController extends Controller
     public function totales($id){
     	$abonos = Abono::where('empleados_id',$id)->sum('monto');
     	$deudas = Deuda::where('empleados_id',$id)->sum('monto');
-    	$total = $abonos - $deudas;
+    	$total = $deudas - $abonos;
     	return $total;
     }
 

@@ -1,18 +1,24 @@
+
 new Vue({
 	el:'#pagoVue',
 	created:function(){
 		this.getEmpleados();
 		this.getTipoProductos();
 		this.getCarga();
-		this.InfoCargas();
 	},
 	data:{
-		listEmpleados:[], tiposProductos:[], cargas:[], getPagos:[]
+		empleado: null, deuda:null, abono: null, efectivo:null,TotalSacosGeneral:null, subTotal:null,total_neto:null, totalFinall:null,
+		listEmpleados:[], tiposProductos:[], cargas:[], getPagos:[], sacosProduto:[]
 	},
 	methods:{
 		getEmpleados:function(){
 			axios.get('getempleados').then(resp => {
 				this.listEmpleados = resp.data;
+			})
+		},
+		getDeudas:function(idEmpleado){
+			axios.get('totales/'+idEmpleado).then(resp => {
+				this.deuda = resp.data
 			})
 		},
 		getTipoProductos:function(){
@@ -21,20 +27,35 @@ new Vue({
 			})
 		},
 		getCarga:function(){
-			axios('get-carga/1').then(resp => {
-				this.cargas = resp.data;
+			axios('get-carga/'+this.empleado).then(resp => {
+				this.cargas = resp.data.c;
+				this.TotalSacosGeneral = resp.data.TotalSacosGeneral;
+				this.subTotal = resp.data.subTotal;
+				this.sacosProduto = resp.data.sacosProduto;
+				this.getDeudas(this.empleado);
+				this.totalFinal();
 			})
 		},
 
-		InfoCargas:function(){
-			axios.get('get-pagos').then(resp => {
-				this.getPagos = resp.data;
+		totalFinal:function(){
+			this.totalFinall = parseInt(this.subTotal) - parseInt(this.abono) - parseInt(this.efectivo);
+		},
+
+		addPagar:function(){
+			
+			this.totalFinal();
+
+			axios.post('add-pagar',{
+				sub_total	: this.subTotal,
+				total_neto	: this.totalFinall,
+				efectivo	: this.efectivo,
+				cargas 		: this.cargas,
+				empleados_id	: this.empleado,
+			}).then(resp => {
+				toastr.success('Pago realizado exitosamente');
+				this.empleado = null;
 			})
 		},
 
-		infoPago:function(){
-			// informacion separa de los distintos
-			// productos que tenemos de ese empleado
-		}
 	}
 })

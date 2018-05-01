@@ -18,6 +18,7 @@
 				<a href="{{route('bancos')}}" class="nav-link nav-item">Bancos</a>
 				<a href="{{route('cuenta')}}" class="nav-item nav-link">Cuenta</a>
 				<a href="{{route('cargar')}}" class="nav-item nav-link">Cargar</a>
+				<a href="{{route('pagar')}}" class="nav-item nav-link">Pagar</a>
 				<a href="#" class="nav-item nav-link">{{ Auth::user()->name }}</a>
 				<a class="nav-item nav-link" href="{{ route('logout') }}"
 				   onclick="event.preventDefault();

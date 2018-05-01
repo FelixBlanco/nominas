@@ -11,7 +11,7 @@ class CargaProducto extends Model
 	
     protected $table = 'carga_productos';
 
-    protected $fillable = ['nro_sacos','day','estado_pago','empleados_id','tipo_productos_id'];
+    protected $fillable = ['nro_sacos','day','estado_pago','fecha_pago','pagos_id','empleados_id','tipo_productos_id'];
 
 	protected $dates = ['deleted_at'];
 

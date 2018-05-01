@@ -65,4 +65,4 @@ Route::get('deleteCarga/{id}','CargaProductoController@deleteCarga')->name('dele
 
 // Pagos 
 Route::get('pagar','PagoController@index')->name('pagar');
-Route::get('get-pagos','PagoController@pagos')->name('get-pagos');
+Route::post('add-pagar','PagoController@add')->name('add-pagar');
