@@ -21,7 +21,7 @@ new Vue({
 				nombre: this.nombre,
 				observacion : this.observacion,
 			}).then( resp => {
-				toastr.success( resp.data.nombre,'Agregado nuevo Tipo de Producto');
+				// toastr.success( resp.data.nombre,'Agregado nuevo Tipo de Producto');
 				this.getTipoProducto();
 			})
 		},

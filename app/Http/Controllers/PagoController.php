@@ -14,10 +14,11 @@ class PagoController extends Controller
     }
     
     public function add(Request $request){
-               
+        
         $a = new Pago($request->all());
         $a->save();
 
+        // Actualizamos las cargas como pago
         foreach ($request['cargas'] as $key) {
             $u = CargaProducto::find($key['id']);
             $u->estado_pago = 'pago';

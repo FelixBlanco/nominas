@@ -46,13 +46,13 @@ class CargaProductoController extends Controller
     public function getCargas($empleado){
         
         // Lista de Productos Cargados
-        $c = CargaProducto::where('empleados_id',$empleado)->get();
+        $c = CargaProducto::where([['empleados_id',$empleado],['estado_pago','pendiente']])->get();
         $c->each(function($c){
             $c->tipoProdcuto = $c->tipoProducto->nombre;
         });
 
         // Total sacos general 
-        $AllSacosGeneral = CargaProducto::where('empleados_id',$empleado)->sum('nro_sacos');
+        $AllSacosGeneral = CargaProducto::where([['empleados_id',$empleado],['estado_pago','pendiente']])->sum('nro_sacos');
 
         // Tipos de Productos
         $tipoP = TipoProducto::get();
